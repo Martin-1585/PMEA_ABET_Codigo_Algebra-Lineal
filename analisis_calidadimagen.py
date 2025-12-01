@@ -28,6 +28,9 @@ def agregar_datos():
     try:
         compresion_input = input("Ingrese el nivel de compresión(%): ") #Ingresar un nivel de compresión para realizar el cálculo de calidad mediante la factorización por QR en polinimios cuadráticos
         compresion = float(compresion_input) # Transformar la entrada en un valor numérico de tipo float
+        if compresion < 0 or compresion > 100: # Verificar que el valor ingresado esté en el rango válido
+            print("El nivel de compresión debe estar entre 0 y 100.")
+            return
         x_hist, y_hist = obtener_datos() # Obtener losa datos de compresión y calidad para tener los datos históricos
         c = calcular_modeloqr(x_hist, y_hist) # Calcular los coeficientes del modelo cuadrático mediante la factorización por QR
         quility_obtained = c[0] + c[1] * compresion + c[2] * (compresion ** 2) # Usar los coeficientes obtenidos para lograr calcular la calidad de la compressión ingresada
