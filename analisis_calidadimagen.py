@@ -78,6 +78,9 @@ def modo_prediccion():
             break
         try:
             val_x = float(val_input) # Se transforma la entrada en un valor numérico de tipo float
+            if val_x < 0 or val_x > 100: # Verificar que el valor ingresado esté en el rango válido
+                print("El nivel de compresión debe estar entre 0 y 100.")
+                continue
             val_y = c[0] + c[1] * val_x + c[2] * (val_x ** 2) # Se calcula la calidad estimada usando el modelo cuadrático obtenido
             # Verficación de estado y veracidad del calculo realizado
             interpolacion = min(x_train) <= val_x <= max(x_train) # Verificar si el valor ingresado está dentro del rango de datos históricos (10 - 60)
