@@ -58,8 +58,23 @@ def calcular_modeloqr(x, y):
     col_1 = np.ones(len(x)) # Crear una columna de unos para el término independiente
     A = np.column_stack((col_1, x, x**2)) # Crear la matriz de diseño para un modelo cuadrático
     Q, R = np.linalg.qr(A) # Factorización QR de la matriz A
-    d = np.dot(Q.T, y) # Obtener el termino superior triangular del sistema
+    print("\n" + "="*40)
+    print("   DETALLES DE LA FACTORIZACIÓN QR")
+    print("="*40)
+    print("Matriz R (Triangular Superior):")
+    print(R)
+    print("Matriz Q (Matriz Ortogonal de A):")
+    print(Q)
+    print("\nMatriz Transpuesta de Q (Q.T):")
+    print(Q.T)
+    d = np.dot(Q.T, y) # Obtener el de sustictución hacia atrás para obtener los coeficientes del modelo
+    print("\nVector d (Resultado de Q^T * y):")
+    print(d)
+    print("="*40 + "\n")
     c = np.linalg.solve(R, d) # Resolver el sistema triangular para obtener los coeficientes del modelo
+    print("\nVector c (Coeficientes):")
+    print(c)
+    print("="*40 + "\n")
     return c
 
 def modo_prediccion():
